@@ -9,6 +9,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     HeaderComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    TodoListComponent,
+    TodoItemComponent,
   ],
   imports: [
     BrowserModule,
