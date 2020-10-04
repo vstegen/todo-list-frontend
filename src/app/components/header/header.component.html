@@ -1,7 +1,11 @@
 <nav class="navbar navbar-dark bg-dark">
   <ul class="nav navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a href="#" class="nav-link">My Todos</a>
+    <li
+      class="nav-item active"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a class="nav-link" routerLink="/todos">My Todos</a>
     </li>
   </ul>
   <ul class="navbar-nav nav ml-auto d-flex flex-row">
