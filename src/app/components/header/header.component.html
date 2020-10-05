@@ -10,6 +10,7 @@
   </ul>
   <ul class="navbar-nav nav ml-auto d-flex flex-row">
     <li
+      *ngIf="!isAuthenticated"
       class="nav-item"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -17,6 +18,7 @@
       <a class="nav-link" routerLink="/signup">Sign up</a>
     </li>
     <li
+      *ngIf="!isAuthenticated"
       class="nav-item ml-3"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -24,11 +26,12 @@
       <a class="nav-link" routerLink="/signin">Sign in</a>
     </li>
     <li
+      *ngIf="isAuthenticated"
       class="nav-item ml-3"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a href="#" class="nav-link">Logout</a>
+      <a href="#" class="nav-link" (click)="onLogout()">Logout</a>
     </li>
   </ul>
 </nav>

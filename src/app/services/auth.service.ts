@@ -34,16 +34,57 @@ export class AuthService {
       );
   }
 
-  // TODO: implement signin
-  signin(email: string, password: string) {}
+  signin(email: string, password: string) {
+    return this.http
+      .post<{ user: { name; email; _id }; token: string }>(
+        'http://localhost:3000/users/login',
+        {
+          email,
+          password,
+        }
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap((res) => {
+          const user = res.user;
+          const token = res.token;
 
-  // TODO: implement logout
-  logout() {}
+          this.authenticate(user.name, user.email, user._id, token);
+        })
+      );
+  }
+
+  autoLogin() {
+    const userData: {
+      name: string;
+      email: string;
+      id: string;
+      _token: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+
+    if (!userData) {
+      return;
+    }
+
+    const storedUser = new User(
+      userData.name,
+      userData.email,
+      userData.id,
+      userData._token
+    );
+    this.user.next(storedUser);
+  }
+
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/signin']);
+    localStorage.removeItem('userData');
+  }
 
   private authenticate(name, email, _id, token) {
-    const user = new User(name, email, _id, token);
-    this.user.next(user);
-    localStorage.setItem('userData', JSON.stringify(user));
+    const newUser = new User(name, email, _id, token);
+    this.user.next(newUser);
+    localStorage.setItem('userData', JSON.stringify(newUser));
   }
 
   private handleError(err: HttpErrorResponse) {

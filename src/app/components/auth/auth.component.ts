@@ -34,13 +34,19 @@ export class AuthComponent implements OnInit {
 
     this.isLoading = true;
 
-    authObservable = this.authService.signup(
-      form.value.name,
-      form.value.email,
-      form.value.password
-    );
+    if (this.isLoginMode) {
+      authObservable = this.authService.signin(
+        form.value.email,
+        form.value.password
+      );
+    } else {
+      authObservable = this.authService.signup(
+        form.value.name,
+        form.value.email,
+        form.value.password
+      );
+    }
 
-    // TODO: enable navigation to /todos after signup
     authObservable.subscribe(
       (res) => {
         this.isLoading = false;
