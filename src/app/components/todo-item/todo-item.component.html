@@ -1,1 +1,24 @@
-<p>todo-item works!</p>
+<div
+  class="col-12 card py-2 d-flex flex-row align-items-center justify-content-between shadow-sm"
+>
+  <div class="view">
+    <input
+      type="checkbox"
+      class="toggle"
+      name="toggle"
+      [checked]="todo.finished"
+      (click)="onToggleTodoCompletion(todo)"
+    />
+    <label
+      for="toggle"
+      class="form-check-label ml-3"
+      [ngClass]="{ finished: todo.finished }"
+      >{{ todo.description }}</label
+    >
+  </div>
+  <div>
+    <button class="btn btn-outline-danger" (click)="onRemoveTodo(todo)">
+      Delete
+    </button>
+  </div>
+</div>

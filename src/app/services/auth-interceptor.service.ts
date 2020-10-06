@@ -17,7 +17,7 @@ export class AuthInterceptorService {
         for (const key of req.headers.keys()) {
           headerSettings[key] = req.headers.getAll(key);
         }
-        if (user.getToken()) {
+        if (!!user && user.getToken()) {
           headerSettings['Authorization'] = `Bearer ${user.getToken()}`;
         }
 
@@ -27,6 +27,7 @@ export class AuthInterceptorService {
         const modifiedReq = req.clone({
           headers: newHeaders,
         });
+
         return next.handle(modifiedReq);
       })
     );

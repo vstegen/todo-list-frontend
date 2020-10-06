@@ -13,6 +13,8 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { TodoCreationComponent } from './components/todo-creation/todo-creation.component';
+import { TodosService } from './services/todos.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     LoadingSpinnerComponent,
     TodoListComponent,
     TodoItemComponent,
+    TodoCreationComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     HttpClientModule,
   ],
   providers: [
-    AuthService,
+    // AuthService,
+    TodosService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

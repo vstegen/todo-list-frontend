@@ -77,8 +77,8 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
-    this.router.navigate(['/signin']);
     localStorage.removeItem('userData');
+    this.router.navigate(['/signin']);
   }
 
   private authenticate(name, email, _id, token) {
@@ -87,6 +87,7 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(newUser));
   }
 
+  // TODO: fix error message when login details don't work
   private handleError(err: HttpErrorResponse) {
     let errMsg = 'An unknown error occurred!';
     if (!err.error || !err.error.error) {

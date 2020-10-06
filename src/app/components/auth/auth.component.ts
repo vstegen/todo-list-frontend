@@ -29,7 +29,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form);
     let authObservable: Observable<any>;
 
     this.isLoading = true;
