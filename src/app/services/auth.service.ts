@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AuthService {
   signup(name: string, email: string, password: string) {
     return this.http
       .post<{ user: { name; email; _id }; token: string }>(
-        'http://localhost:3000/users',
+        environment.apiUrl + '/users',
         {
           name,
           email,
@@ -37,7 +38,7 @@ export class AuthService {
   signin(email: string, password: string) {
     return this.http
       .post<{ user: { name; email; _id }; token: string }>(
-        'http://localhost:3000/users/login',
+        environment.apiUrl + '/users/login',
         {
           email,
           password,
